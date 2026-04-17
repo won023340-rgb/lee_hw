@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여주청년 이혜원</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f5f5f7; }
+        .bento-card {
+            background: white;
+            border-radius: 3rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 메인 대형 영상 고정 사이즈 */
+        .fixed-mega-box {
+            width: 1152px;
+            height: 1152px;
+            cursor: pointer;
+        }
+        @media (max-width: 1200px) {
+            .fixed-mega-box {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10 flex flex-col items-center" onclick="unlockAudioContext()">
+
+    <div class="space-y-10 w-full flex flex-col items-center">
+        
+        <div class="bento-card fixed-mega-box relative bg-black shadow-2xl border-none" onclick="handleSound(event)">
+            <video id="topVideo" src="main-bg.mp4" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+            
+            <div id="muteBtn" class="absolute top-10 right-10 z-30 bg-white/90 text-gray-900 px-8 py-4 rounded-full font-black shadow-2xl flex items-center gap-3 text-xl transition-all">
+                <span id="muteIcon">🔇</span> <span id="muteText">소리 켜기</span>
+            </div>
+            
+            <div id="clickGuide" class="absolute inset-0 flex items-center justify-center bg-black/10 z-10 pointer-events-none text-center">
+                <p class="text-white text-2xl font-bold bg-black/40 px-8 py-4 rounded-2xl backdrop-blur-sm">화면을 클릭하면 소리가 나옵니다</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-[1152px]">
+
+            <div class="bento-card aspect-square relative bg-gray-900 shadow-xl border-none">
+                <video id="secondVideo" src="second-video.mp4" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+            </div>
+            </div>
+
+            <div class="bento-card p-12 flex flex-col justify-center items-center text-center aspect-square">
+                <div class="text-8xl mb-8">💼</div>
+                <h3 class="font-black text-6xl text-gray-900 mb-10 tracking-tighter">실무 전문가</h3>
+                <div class="space-y-6 text-gray-500 text-3xl font-bold">
+                    <p class="text-blue-600 font-black text-4xl mb-4">더불어민주당 여주양평 사무차장</p>
+                    <p>현)민주평통 여주시 청년위원장</p>
+                    <p>전) 21대 대선 여주 회계책임자</p>
+                    <p>전) 푸르메재단 무이숲 재무팀</p>
+                    <p>전) 여주도서관 북카페 운영</p>
+                </div>
+            </div>
+
+            <div class="bento-card bg-[#111827] text-white p-12 pt-16 aspect-square">
+                <h3 class="font-black text-6xl text-blue-500 mb-12 text-center tracking-tighter">핵심 역량</h3>
+                <div class="space-y-4 w-full px-8 text-left">
+                    <div class="border-b border-gray-800 pb-3">
+                        <span class="text-3xl font-black text-white block">회계 전문성</span>
+                        <span class="text-blue-400 text-xl font-bold block mt-1">숫자로 책임을 증명합니다.</span>
+                    </div>
+                    <div class="border-b border-gray-800 pb-3">
+                        <span class="text-3xl font-black text-white block">예산 관리</span>
+                        <span class="text-blue-400 text-xl font-bold block mt-1">세금의 흐름을 바로잡습니다.</span>
+                    </div>
+                    <div class="border-b border-gray-800 pb-3">
+                        <span class="text-3xl font-black text-white block">실무 역량</span>
+                        <span class="text-blue-400 text-xl font-bold block mt-1">현장에서 답을 찾고 실행합니다.</span>
+                    </div>
+                    <div class="border-b border-gray-800 pb-3">
+                        <span class="text-3xl font-black text-white block">청년 정책</span>
+                        <span class="text-blue-400 text-xl font-bold block mt-1">떠나지 않아도 되는 여주를 만듭니다.</span>
+                    </div>
+                    <div class="border-b border-gray-800 pb-3">
+                        <span class="text-3xl font-black text-white block">투명 행정</span>
+                        <span class="text-blue-400 text-xl font-bold block mt-1">신뢰받는 행정을 실현합니다.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card bg-[#2563eb] text-white p-12 aspect-square flex flex-col justify-between">
+                <h3 class="text-5xl font-black leading-tight mt-4 tracking-tighter">
+                    떠나지 않아도 되는 여주,<br>다시 돌아오고 싶은 여주.
+                </h3>
+                <div class="space-y-10">
+                    <p class="text-blue-50 text-3xl font-bold leading-relaxed">
+                        청년의 실행력으로<br>여주의 변화를 만듭니다.
+                    </p>
+                    <div class="flex gap-4">
+                        <span class="bg-white/20 px-8 py-3 rounded-full text-lg font-bold">#97년생</span>
+                        <span class="bg-white/20 px-8 py-3 rounded-full text-lg font-bold">#여주시</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-[1152px] grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <a href="https://www.facebook.com/profile.php?id=61582088739118&locale=ko_KR" target="_blank" class="bento-card bg-[#1877F2] text-white py-8 flex flex-row items-center justify-center gap-4 shadow-lg hover:opacity-90 transition-all border-none">
+                <span class="text-4xl">🔵</span>
+                <span class="text-3xl font-black tracking-tighter">FACEBOOK</span>
+            </a>
+            <a href="https://www.youtube.com/@%EC%9D%B4%ED%98%9C%EC%9B%90TV" target="_blank" class="bento-card bg-[#2563eb] text-white py-8 flex flex-row items-center justify-center gap-4 shadow-lg hover:bg-blue-700 transition-all border-none">
+                <span class="text-4xl">🔴</span>
+                <span class="text-3xl font-black tracking-tighter">이혜원TV</span>
+            </a>
+        </div>
+
+        <footer class="text-center py-24 text-gray-400 text-sm font-black tracking-[0.5em] uppercase opacity-40">
+            © 2026 Lee Hye-won. 우리의 여주, 청년의 시선.
+        </footer>
+    </div>
+
+    <script>
+        const video = document.getElementById('topVideo');
+        const icon = document.getElementById('muteIcon');
+        const text = document.getElementById('muteText');
+        const btn = document.getElementById('muteBtn');
+        const guide = document.getElementById('clickGuide');
+
+        // 첫 클릭 시 오디오 잠금 해제
+        function unlockAudioContext() {
+            video.play();
+            document.getElementById('secondVideo').play();
+        }
+
+        function handleSound(event) {
+            if (video.muted) {
+                video.muted = false;
+                video.volume = 1.0;
+                video.play();
+                icon.innerText = "🔊";
+                text.innerText = "소리 끄기";
+                btn.classList.replace('bg-white/90', 'bg-blue-600');
+                btn.classList.add('text-white');
+                guide.style.display = 'none';
+            } else {
+                video.muted = true;
+                icon.innerText = "🔇";
+                text.innerText = "소리 켜기";
+                btn.classList.replace('bg-blue-600', 'bg-white/90');
+                btn.classList.remove('text-white');
+            }
+        }
+    </script>
+</body>
+</html>
